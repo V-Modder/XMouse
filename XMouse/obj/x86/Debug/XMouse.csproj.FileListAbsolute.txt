@@ -1,0 +1,11 @@
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\bin\Debug\XMouse.exe
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\bin\Debug\XMouse.pdb
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.csprojResolveAssemblyReference.cache
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.Properties.Resources.resources
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.csproj.GenerateResource.Cache
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.exe
+c:\users\v-modder\documents\visual studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.pdb
+C:\Users\V-Modder\Documents\Visual Studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.Form1.resources
+C:\Users\V-Modder\Documents\Visual Studio 2010\Projects\XMouse\XMouse\obj\x86\Debug\XMouse.Add_App.resources
+C:\Users\V-Modder\Documents\Visual Studio 2010\Projects\XMouse\XMouse\bin\Debug\XMouse.exe.config
+C:\Users\V-Modder\Documents\Visual Studio 2010\Projects\XMouse\XMouse\bin\Debug\GlacialList.dll
