@@ -25,7 +25,7 @@ namespace XMouse
         bool bRunThreads = true;
         ImageList iList;
         string sFileName = Application.StartupPath + @"\App-List.gl";
-
+        int iSpeed;
         // P/Invoke Funktion u.a. zum Steuern der Maus
         [DllImport("user32.dll")]
         public static extern void mouse_event(uint dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
@@ -64,6 +64,10 @@ namespace XMouse
                     GLSubItem sub1, sub2;
                     GLItem gli;
                     Icon ic;
+                    iSpeed = Convert.ToInt32(sr.ReadLine());
+                    trackBar1.Value = iSpeed;
+                    trackBar1.Update();
+                    label3.Text = trackBar1.Value.ToString();
                     s = sr.ReadLine();
                     while (s != "" && s != null)
                     {
@@ -102,6 +106,7 @@ namespace XMouse
                 if (glacialList1.Items.Count >= 1)
                 {
                     StreamWriter sw = new StreamWriter(sFileName, false);
+                    sw.WriteLine(iSpeed.ToString());
                     for (int i = 0; i < glacialList1.Items.Count; i++)
                         sw.WriteLine(glacialList1.Items[i].SubItems[1].Text);
                     sw.Close();
@@ -193,8 +198,8 @@ namespace XMouse
             while (bRunThreads)
             {
                 GPS.Update();
-                Cursor.Position = new Point(Cursor.Position.X + (Convert.ToInt32(GPS.LeftStick.Position.X) * 4),
-                                            Cursor.Position.Y + (Convert.ToInt32(GPS.LeftStick.Position.Y) * -4));
+                Cursor.Position = new Point(Cursor.Position.X + (Convert.ToInt32(GPS.LeftStick.Position.X * trackBar1.Value)),
+                                            Cursor.Position.Y + (Convert.ToInt32(GPS.LeftStick.Position.Y * -trackBar1.Value)));
                 Thread.Sleep(8);
             }
         }
@@ -219,6 +224,15 @@ namespace XMouse
                 }
                 Thread.Sleep(10);
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if(trackBar1.Value < 10)
+                label3.Text = "0" + trackBar1.Value.ToString();
+            else
+                label3.Text = trackBar1.Value.ToString();
+            iSpeed = trackBar1.Value;
         }        
         
     }
