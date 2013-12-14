@@ -1,7 +1,7 @@
 XMouse
 ======
 
-Redirects XBOX360-Controller to mouseinput
+Redirects XBOX360-Controller inpputs to mouse input
 
 This app is written in C#, with Visual Studio 2010.
 
