@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 using Whatever;
 using GlacialComponents.Controls;
 
@@ -21,8 +22,9 @@ namespace XMouse
     {
         #region Globel objects
         //Vars
-        Thread tSticks, tButtons;
+        Thread tSticks, tButtons, tCheckApps;
         bool bRunThreads = true;
+        bool bCheckAppsRunning = false;
         ImageList iList;
         string sFileName = Application.StartupPath + @"\App-List.gl";
         int iSpeed;
@@ -51,6 +53,8 @@ namespace XMouse
             tSticks.Start();
             tButtons = new Thread(CheckControllerButtons);
             tButtons.Start();
+            tCheckApps = new Thread(CheckAppsRunning);
+            tCheckApps.Start();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,6 +65,7 @@ namespace XMouse
                 try
                 {
                     string s;
+                    pictureBox1.Image = XMouse.Properties.Resources.green;
                     GLSubItem sub1, sub2;
                     GLItem gli;
                     Icon ic;
@@ -197,10 +202,13 @@ namespace XMouse
             GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
             while (bRunThreads)
             {
-                GPS.Update();
-                Cursor.Position = new Point(Cursor.Position.X + (Convert.ToInt32(GPS.LeftStick.Position.X * trackBar1.Value)),
-                                            Cursor.Position.Y + (Convert.ToInt32(GPS.LeftStick.Position.Y * -trackBar1.Value)));
-                Thread.Sleep(8);
+                if (!bCheckAppsRunning)
+                {
+                    GPS.Update();
+                    Cursor.Position = new Point(Cursor.Position.X + (Convert.ToInt32(GPS.LeftStick.Position.X * iSpeed)),
+                                                Cursor.Position.Y + (Convert.ToInt32(GPS.LeftStick.Position.Y * -iSpeed)));
+                    Thread.Sleep(8);
+                }
             }
         }
 
@@ -209,20 +217,58 @@ namespace XMouse
             GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
             while (bRunThreads)
             {
-                GPS.Update();
-                if (GPS.A)
-                    SimulateLeftMouseClick();
-                if (GPS.B)
-                    SimulateRightMouseClick();
-                if (GPS.RightStick.Position.Y != 0)
+                if (!bCheckAppsRunning)
                 {
-                    mouse_event(MOUSEEVENTF_WHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.Y * 120), 0);
+                    GPS.Update();
+                    if (GPS.A)
+                        SimulateLeftMouseClick();
+                    if (GPS.B)
+                        SimulateRightMouseClick();
+                    if (GPS.RightStick.Position.Y != 0)
+                    {
+                        mouse_event(MOUSEEVENTF_WHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.Y * 120), 0);
+                    }
+                    if (GPS.RightStick.Position.X != 0)
+                    {
+                        mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.X * 120), 0);
+                    }
                 }
-                if (GPS.RightStick.Position.X != 0)
-                {
-                    mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.X * 120), 0);
-                }
+                if (bCheckAppsRunning)
+                        pictureBox1.Image = XMouse.Properties.Resources.yellow;
+                    else
+                        pictureBox1.Image = XMouse.Properties.Resources.green;
                 Thread.Sleep(10);
+            }
+        }
+
+        private bool IsProcessOpen(string name)
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Contains(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void CheckAppsRunning()
+        {
+            bool bCheck;
+            while (bRunThreads)
+            {
+                bCheck = false;
+                for (int i = 0; i < glacialList1.Items.Count; i++)
+                {
+                    String s = glacialList1.Items[i].SubItems[1].Text;
+                    if (IsProcessOpen(s.Substring(s.LastIndexOf(@"\")+1, (s.LastIndexOf(".")-1) - s.LastIndexOf(@"\"))))
+                       bCheck = true;
+                }
+                if (bCheck)
+                    bCheckAppsRunning = true;
+                else
+                    bCheckAppsRunning = false;
             }
         }
 
@@ -234,6 +280,5 @@ namespace XMouse
                 label3.Text = trackBar1.Value.ToString();
             iSpeed = trackBar1.Value;
         }        
-        
     }
 }
