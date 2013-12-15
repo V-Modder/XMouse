@@ -25,6 +25,8 @@ namespace XMouse
         Thread tSticks, tButtons, tCheckApps;
         bool bRunThreads = true;
         bool bCheckAppsRunning = false;
+        bool bLeftKey = false;
+        bool bRightKey = false;
         ImageList iList;
         string sFileName = Application.StartupPath + @"\App-List.gl";
         int iSpeed;
@@ -185,16 +187,32 @@ namespace XMouse
             }
         }
 
-        private void SimulateLeftMouseClick()
+        private void SimulateLeftMouseClick(bool b)
         {
-            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+            if(!bLeftKey && b)
+            {
+                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                bLeftKey = true;
+            }
+            if (bLeftKey && !b)
+            {
+                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                bLeftKey = false;
+            }
         }
 
-        private void SimulateRightMouseClick()
+        private void SimulateRightMouseClick(bool b)
         {
-            mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-            mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+            if (!bRightKey && b)
+            {
+                mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+                bRightKey = true;
+            }
+            if (bRightKey && b)
+            {
+                mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                bRightKey = false;
+            }
         }
 
         private void CheckControllerSticks()
@@ -220,10 +238,8 @@ namespace XMouse
                 if (!bCheckAppsRunning)
                 {
                     GPS.Update();
-                    if (GPS.A)
-                        SimulateLeftMouseClick();
-                    if (GPS.B)
-                        SimulateRightMouseClick();
+                    SimulateLeftMouseClick(GPS.A);
+                    SimulateRightMouseClick(GPS.B);
                     if (GPS.RightStick.Position.Y != 0)
                     {
                         mouse_event(MOUSEEVENTF_WHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.Y * 120), 0);
