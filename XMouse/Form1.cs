@@ -20,7 +20,7 @@ namespace XMouse
 {
     public partial class Form1 : Form
     {
-        #region Globel objects
+        #region Global objects
         //Vars
         Thread tSticks, tButtons, tCheckApps;
         bool bRunThreads = true;
@@ -98,6 +98,7 @@ namespace XMouse
                     MessageBox.Show(ee.Message + Environment.NewLine + ee.Source);
                 }
                 sr.Close();
+                this.WindowState = FormWindowState.Minimized;
             }
         }
 
