@@ -28,6 +28,7 @@ namespace XMouse
         bool bCheckAppsRunning = false;
         bool bLeftKey = false;
         bool bRightKey = false;
+        bool bRightShoulder = false;
         ImageList iList;
         string sFileName = Application.StartupPath + @"\App-List.gl";
         int iSpeed;
@@ -126,12 +127,56 @@ namespace XMouse
                     {
                         mouse_event(MOUSEEVENTF_HWHEEL, 0, 0, Convert.ToInt32(GPS.RightStick.Position.X * 120), 0);
                     }
+                    if (GPS.RightShoulder)
+                    {
+                        if (!bRightShoulder)
+                        {
+                            bRightShoulder = true;
+                            StartOSK();
+                        }
+                    }
+                    else
+                        bRightShoulder = false;
                 }
                 if (bCheckAppsRunning)
                     pib_Status.Image = XMouse.Properties.Resources.yellow;
                 else
                     pib_Status.Image = XMouse.Properties.Resources.green;
                 Thread.Sleep(10);
+            }
+        }
+
+        private void StartOSK()
+        {
+            string windir = Environment.GetEnvironmentVariable("WINDIR");
+            string osk = null;
+
+            if (Process.GetProcessesByName("osk").Length > 0)
+            {
+                Process.GetProcessesByName("osk")[0].Kill();
+            }
+            else
+            {
+                if (osk == null)
+                {
+                    osk = Path.Combine(Path.Combine(windir, "sysnative"), "osk.exe");
+                    if (!File.Exists(osk))
+                        osk = null;
+                }
+
+                if (osk == null)
+                {
+                    osk = Path.Combine(Path.Combine(windir, "system32"), "osk.exe");
+                    if (!File.Exists(osk))
+                    {
+                        osk = null;
+                    }
+                }
+
+                if (osk == null)
+                    osk = "osk.exe";
+
+                Process.Start(osk);
             }
         }
 
