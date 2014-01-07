@@ -43,6 +43,7 @@
             this.lbl_speed_max = new System.Windows.Forms.Label();
             this.lbl_Speed = new System.Windows.Forms.Label();
             this.pib_Status = new System.Windows.Forms.PictureBox();
+            this.cb_Controllers = new AdvancedComboBox();
             this.cms_Icon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trb_Speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_Status)).BeginInit();
@@ -204,12 +205,25 @@
             this.pib_Status.TabIndex = 10;
             this.pib_Status.TabStop = false;
             // 
+            // cb_Controllers
+            // 
+            this.cb_Controllers.FormattingEnabled = true;
+            this.cb_Controllers.HighlightColor = System.Drawing.Color.Green;
+            this.cb_Controllers.Location = new System.Drawing.Point(628, 181);
+            this.cb_Controllers.MaxDropDownItems = 4;
+            this.cb_Controllers.Name = "cb_Controllers";
+            this.cb_Controllers.Size = new System.Drawing.Size(106, 21);
+            this.cb_Controllers.Sorted = true;
+            this.cb_Controllers.TabIndex = 11;
+            this.cb_Controllers.SelectedIndexChanged += new System.EventHandler(this.cb_Controllers_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(746, 337);
+            this.Controls.Add(this.cb_Controllers);
             this.Controls.Add(this.pib_Status);
             this.Controls.Add(this.lbl_Speed);
             this.Controls.Add(this.lbl_speed_max);
@@ -248,6 +262,7 @@
         private System.Windows.Forms.Label lbl_speed_max;
         private System.Windows.Forms.Label lbl_Speed;
         private System.Windows.Forms.PictureBox pib_Status;
+        private AdvancedComboBox cb_Controllers;
 
     }
 }

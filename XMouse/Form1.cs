@@ -22,7 +22,8 @@ namespace XMouse
     {
         #region Global objects
         //Vars
-        Thread tSticks, tButtons, tCheckApps;
+        GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
+        Thread tSticks, tButtons, tCheckApps, tContrllers;
         bool bRunThreads = true;
         bool bCheckAppsRunning = false;
         bool bLeftKey = false;
@@ -46,11 +47,15 @@ namespace XMouse
         public Form1()
         {
             InitializeComponent();
+            
+
             this.Icon = Properties.Resources.xbox360;
             ntf_Icon.Icon = Properties.Resources.xbox360;
             ntf_Icon.Visible = false;
             iList = new ImageList();
             gla_Apps.ImageList = iList;
+            tContrllers = new Thread(CheckControllers);
+            tContrllers.Start();
             tSticks = new Thread(CheckControllerSticks);
             tSticks.Start();
             tButtons = new Thread(CheckControllerButtons);
@@ -106,7 +111,6 @@ namespace XMouse
 
         private void CheckControllerButtons()
         {
-            GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
             while (bRunThreads)
             {
                 if (!bCheckAppsRunning)
@@ -133,7 +137,6 @@ namespace XMouse
 
         private void CheckControllerSticks()
         {
-            GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
             while (bRunThreads)
             {
                 if (!bCheckAppsRunning)
@@ -144,7 +147,93 @@ namespace XMouse
                     Thread.Sleep(8);
                 }
             }
-        }        
+        }
+        
+        private void CheckControllers()
+        {
+            GamepadState gps;
+            bool bstart = true;
+            while (bRunThreads)
+            {
+                //One
+                gps = new GamepadState(SlimDX.XInput.UserIndex.One);
+                if (gps.Connected)
+                {
+                    if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                    }
+                }
+                else
+                {
+                    if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                    }
+                }
+
+                //Two
+                gps = new GamepadState(SlimDX.XInput.UserIndex.Two);
+                if (gps.Connected)
+                {
+                    if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                    }
+                }
+                else
+                {
+                    if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                    }
+                }
+
+                //Three
+                gps = new GamepadState(SlimDX.XInput.UserIndex.Three);
+                if (gps.Connected)
+                {
+                    if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                    }
+                }
+                else
+                {
+                    if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                    }
+                }
+
+                //Four
+                gps = new GamepadState(SlimDX.XInput.UserIndex.Four);
+                if (gps.Connected)
+                {
+                    if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                    }
+                }
+                else
+                {
+                    if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
+                    {
+                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                    }
+                }
+                if(bstart)
+                {
+                    bstart = false;
+                    MethodInvoker LabelUpdate = delegate
+                    {
+                        cb_Controllers.SelectedIndex = 0;
+                    };
+                    Invoke(LabelUpdate);
+                }
+                Thread.Sleep(500);
+            }
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -155,14 +244,14 @@ namespace XMouse
                 {
                     File.Delete(sFileName);
                 }
+                StreamWriter sw = new StreamWriter(sFileName, false);
+                sw.WriteLine(iSpeed.ToString());
                 if (gla_Apps.Items.Count >= 1)
                 {
-                    StreamWriter sw = new StreamWriter(sFileName, false);
-                    sw.WriteLine(iSpeed.ToString());
                     for (int i = 0; i < gla_Apps.Items.Count; i++)
-                        sw.WriteLine(gla_Apps.Items[i].SubItems[1].Text);
-                    sw.Close();
+                        sw.WriteLine(gla_Apps.Items[i].SubItems[1].Text); 
                 }
+                sw.Close();
             }
             catch (Exception ee)
             {
@@ -189,18 +278,21 @@ namespace XMouse
                     s = sr.ReadLine();
                     while (s != "" && s != null)
                     {
-                        sub2 = new GLSubItem();
-                        sub2.Text = s;
-                        ic = Icon.ExtractAssociatedIcon(s);
-                        iList.Images.Add(sub2.Text, ic.ToBitmap());
-                        sub1 = new GLSubItem();
-                        sub1.ImageIndex = iList.Images.IndexOfKey(sub2.Text);
-                        gli = new GLItem();
-                        gli.SubItems.AddRange(new GLSubItem[] { sub1, sub2 });
-                        gla_Apps.Items.Add(gli);
-                        sub1 = null;
-                        sub2 = null;
-                        gli = null;
+                        if (File.Exists(s))
+                        {
+                            sub2 = new GLSubItem();
+                            sub2.Text = s;
+                            ic = Icon.ExtractAssociatedIcon(s);
+                            iList.Images.Add(sub2.Text, ic.ToBitmap());
+                            sub1 = new GLSubItem();
+                            sub1.ImageIndex = iList.Images.IndexOfKey(sub2.Text);
+                            gli = new GLItem();
+                            gli.SubItems.AddRange(new GLSubItem[] { sub1, sub2 });
+                            gla_Apps.Items.Add(gli);
+                            sub1 = null;
+                            sub2 = null;
+                            gli = null;
+                        }
                         s = sr.ReadLine();
                     }
                 }
@@ -283,7 +375,7 @@ namespace XMouse
                 mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
                 bRightKey = true;
             }
-            if (bRightKey && b)
+            if (bRightKey && !b)
             {
                 mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
                 bRightKey = false;
@@ -297,6 +389,25 @@ namespace XMouse
             else
                 lbl_Speed.Text = trb_Speed.Value.ToString();
             iSpeed = trb_Speed.Value;
-        }        
+        }
+
+        private void cb_Controllers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(cb_Controllers.SelectedItem.ToString())
+            {
+                case "One":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
+                    break;
+                case "Two":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Two);
+                    break;
+                case "Three":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Three);
+                    break;
+                case "Four":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Four);
+                    break;
+            }
+        }
     }
 }
