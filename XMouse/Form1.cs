@@ -26,6 +26,7 @@ namespace XMouse
         Thread tSticks, tButtons, tCheckApps, tContrllers;
         bool bRunThreads = true;
         bool bCheckAppsRunning = false;
+        bool bCheckController = false;
         bool bLeftKey = false;
         bool bRightKey = false;
         bool bRightShoulder = false;
@@ -48,8 +49,6 @@ namespace XMouse
         public Form1()
         {
             InitializeComponent();
-            
-
             this.Icon = Properties.Resources.xbox360;
             ntf_Icon.Icon = Properties.Resources.xbox360;
             ntf_Icon.Visible = false;
@@ -138,7 +137,7 @@ namespace XMouse
                     else
                         bRightShoulder = false;
                 }
-                if (bCheckAppsRunning)
+                if (bCheckAppsRunning || bCheckController)
                     pib_Status.Image = XMouse.Properties.Resources.yellow;
                 else
                     pib_Status.Image = XMouse.Properties.Resources.green;
@@ -206,14 +205,24 @@ namespace XMouse
                 {
                     if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Add(gps.UserIndex.ToString());                            
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
                 else
                 {
                     if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 0)
+                                cb_Controllers.Text = "No controller";
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
 
@@ -223,14 +232,24 @@ namespace XMouse
                 {
                     if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
                 else
                 {
                     if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 0)
+                                cb_Controllers.Text = "No controller";
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
 
@@ -240,14 +259,24 @@ namespace XMouse
                 {
                     if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
                 else
                 {
                     if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 0)
+                                cb_Controllers.Text = "No controller";
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
 
@@ -257,17 +286,33 @@ namespace XMouse
                 {
                     if (!cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
                 else
                 {
                     if (cb_Controllers.Items.Contains(gps.UserIndex.ToString()))
                     {
-                        cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                        MethodInvoker LabelUpdate = delegate
+                        {
+                            cb_Controllers.Items.Remove(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 0)
+                                cb_Controllers.Text = "No controller";
+                        };
+                        Invoke(LabelUpdate);
                     }
                 }
-                if(bstart)
+
+                if (cb_Controllers.Items.Count >= 1)
+                    bCheckController = false;
+                else
+                    bCheckController = true;
+
+                if(bstart && cb_Controllers.Items.Count >= 1)
                 {
                     bstart = false;
                     MethodInvoker LabelUpdate = delegate

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn1 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn2 = new GlacialComponents.Controls.GLColumn();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.gla_Apps = new GlacialComponents.Controls.GlacialList();
@@ -78,25 +78,25 @@
             this.gla_Apps.AutoHeight = true;
             this.gla_Apps.BackColor = System.Drawing.SystemColors.Window;
             this.gla_Apps.BackgroundStretchToFit = true;
-            glColumn3.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
-            glColumn3.CheckBoxes = false;
-            glColumn3.ImageIndex = -1;
-            glColumn3.Name = "Icon";
-            glColumn3.NumericSort = false;
-            glColumn3.Text = "Icon";
-            glColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn3.Width = 30;
-            glColumn4.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumn4.CheckBoxes = false;
-            glColumn4.ImageIndex = -1;
-            glColumn4.Name = "Pfad";
-            glColumn4.NumericSort = false;
-            glColumn4.Text = "Pfad";
-            glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn4.Width = 570;
+            glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
+            glColumn1.CheckBoxes = false;
+            glColumn1.ImageIndex = -1;
+            glColumn1.Name = "Icon";
+            glColumn1.NumericSort = false;
+            glColumn1.Text = "Icon";
+            glColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn1.Width = 30;
+            glColumn2.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn2.CheckBoxes = false;
+            glColumn2.ImageIndex = -1;
+            glColumn2.Name = "Pfad";
+            glColumn2.NumericSort = false;
+            glColumn2.Text = "Pfad";
+            glColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn2.Width = 570;
             this.gla_Apps.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
-            glColumn3,
-            glColumn4});
+            glColumn1,
+            glColumn2});
             this.gla_Apps.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this.gla_Apps.FullRowSelect = true;
             this.gla_Apps.GridColor = System.Drawing.Color.LightGray;

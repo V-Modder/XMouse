@@ -101,6 +101,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="setup.aip" />
     <None Include="xbox360.ico" />
   </ItemGroup>
   <ItemGroup>
