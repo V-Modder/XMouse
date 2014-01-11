@@ -73,6 +73,7 @@
     <Compile Include="GamepadState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlimDxNotFoundException.cs" />
     <EmbeddedResource Include="Add_App.resx">
       <DependentUpon>Add_App.cs</DependentUpon>
     </EmbeddedResource>

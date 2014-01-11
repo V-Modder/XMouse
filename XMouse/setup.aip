@@ -75,6 +75,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AIShRegAnswer" ComponentId="{A60C336B-B760-4C5D-AC67-7A37E28E2C0B}" Directory_="APPDIR" Attributes="4" KeyPath="AIShRegAnswer"/>
     <ROW Component="AI_CustomARPName" ComponentId="{FBCAD7D7-856B-4353-801D-5CD2D1785758}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_DisableModify" ComponentId="{7069FE9A-25D5-458D-8825-84CC7D10146C}" Directory_="APPDIR" Attributes="4" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{9FDA42AF-A212-4985-9168-0D25AFFDBC87}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="GlacialList.dll" ComponentId="{F675F596-1D6A-41F4-BCC6-9A9C1C254E67}" Directory_="APPDIR" Attributes="0" KeyPath="GlacialList.dll"/>
     <ROW Component="Microsoft.NETFrame" ComponentId="{61887C05-AD2C-4304-A6E1-7591E9F25506}" Directory_="APPDIR" Attributes="4" KeyPath="Microsoft.NETFrame" Options="2"/>
@@ -85,7 +86,7 @@
     <ROW Component="XMouse.exe" ComponentId="{FF6BE2FD-182F-4A24-88AC-CFCD3DA9EBA8}" Directory_="APPDIR" Attributes="0" KeyPath="XMouse.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AIShRegAnswer AI_CustomARPName AI_ExePath GlacialList.dll ProductInformation SHORTCUTDIR XMouse.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AIShRegAnswer AI_CustomARPName AI_DisableModify AI_ExePath GlacialList.dll ProductInformation SHORTCUTDIR XMouse.exe"/>
     <ROW Feature="Microsoft.NETFrame" Title="Microsoft .NET Framework 4" Description="Microsoft .NET Framework 4" Display="7" Level="1" Attributes="16" Components="Microsoft.NETFrame"/>
     <ROW Feature="SlimDXRuntime.NET" Title="SlimDX Runtime .NET 4.0 x64 (January 2012)" Description="SlimDX Runtime .NET 4.0 x64 (January 2012)" Display="3" Level="1" Attributes="16" Components="SlimDXRuntime.NET"/>
     <ROW Feature="SlimDXRuntime.NET_1" Title="SlimDX Runtime .NET 4.0 x86 (January 2012)" Description="SlimDX Runtime .NET 4.0 x86 (January 2012)" Display="5" Level="1" Attributes="16" Components="SlimDXRuntime.NET_1"/>
@@ -172,7 +173,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Hide" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
-    <ATTRIBUTE name="DeletedRows" value="ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="DesktopShortcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
+    <ATTRIBUTE name="DeletedRows" value="ShortcutsDlg#DesktopShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
@@ -306,6 +310,7 @@
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="Microsoft.NETFrame" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="Microsoft.NETFrame" Value="1" Component_="Microsoft.NETFrame"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /I [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
