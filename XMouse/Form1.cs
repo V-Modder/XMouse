@@ -89,6 +89,25 @@ namespace XMouse
             }
         }
 
+        private void cb_Controllers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cb_Controllers.SelectedItem.ToString())
+            {
+                case "One":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
+                    break;
+                case "Two":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Two);
+                    break;
+                case "Three":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Three);
+                    break;
+                case "Four":
+                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Four);
+                    break;
+            }
+        }
+
         private void CheckAppsRunning()
         {
             bool bCheck;
@@ -145,40 +164,6 @@ namespace XMouse
             }
         }
 
-        private void StartOSK()
-        {
-            string windir = Environment.GetEnvironmentVariable("WINDIR");
-            string osk = null;
-
-            if (Process.GetProcessesByName("osk").Length > 0)
-            {
-                Process.GetProcessesByName("osk")[0].Kill();
-            }
-            else
-            {
-                if (osk == null)
-                {
-                    osk = Path.Combine(Path.Combine(windir, "sysnative"), "osk.exe");
-                    if (!File.Exists(osk))
-                        osk = null;
-                }
-
-                if (osk == null)
-                {
-                    osk = Path.Combine(Path.Combine(windir, "system32"), "osk.exe");
-                    if (!File.Exists(osk))
-                    {
-                        osk = null;
-                    }
-                }
-
-                if (osk == null)
-                    osk = "osk.exe";
-
-                Process.Start(osk);
-            }
-        }
-
         private void CheckControllerSticks()
         {
             while (bRunThreads)
@@ -207,7 +192,9 @@ namespace XMouse
                     {
                         MethodInvoker LabelUpdate = delegate
                         {
-                            cb_Controllers.Items.Add(gps.UserIndex.ToString());                            
+                            cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 1)
+                                cb_Controllers.SelectedIndex = 0;
                         };
                         Invoke(LabelUpdate);
                     }
@@ -220,7 +207,9 @@ namespace XMouse
                         {
                             cb_Controllers.Items.Remove(gps.UserIndex.ToString());
                             if (cb_Controllers.Items.Count == 0)
+                            {
                                 cb_Controllers.Text = "No controller";
+                            }
                         };
                         Invoke(LabelUpdate);
                     }
@@ -235,6 +224,8 @@ namespace XMouse
                         MethodInvoker LabelUpdate = delegate
                         {
                             cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 1)
+                                cb_Controllers.SelectedIndex = 0;
                         };
                         Invoke(LabelUpdate);
                     }
@@ -262,6 +253,8 @@ namespace XMouse
                         MethodInvoker LabelUpdate = delegate
                         {
                             cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 1)
+                                cb_Controllers.SelectedIndex = 0;
                         };
                         Invoke(LabelUpdate);
                     }
@@ -289,6 +282,8 @@ namespace XMouse
                         MethodInvoker LabelUpdate = delegate
                         {
                             cb_Controllers.Items.Add(gps.UserIndex.ToString());
+                            if (cb_Controllers.Items.Count == 1)
+                                cb_Controllers.SelectedIndex = 0;
                         };
                         Invoke(LabelUpdate);
                     }
@@ -472,6 +467,40 @@ namespace XMouse
             }
         }
 
+        private void StartOSK()
+        {
+            string windir = Environment.GetEnvironmentVariable("WINDIR");
+            string osk = null;
+
+            if (Process.GetProcessesByName("osk").Length > 0)
+            {
+                Process.GetProcessesByName("osk")[0].Kill();
+            }
+            else
+            {
+                if (osk == null)
+                {
+                    osk = Path.Combine(Path.Combine(windir, "sysnative"), "osk.exe");
+                    if (!File.Exists(osk))
+                        osk = null;
+                }
+
+                if (osk == null)
+                {
+                    osk = Path.Combine(Path.Combine(windir, "system32"), "osk.exe");
+                    if (!File.Exists(osk))
+                    {
+                        osk = null;
+                    }
+                }
+
+                if (osk == null)
+                    osk = "osk.exe";
+
+                Process.Start(osk);
+            }
+        }
+
         private void trb_Speed_Scroll(object sender, EventArgs e)
         {
             if(trb_Speed.Value < 10)
@@ -479,25 +508,6 @@ namespace XMouse
             else
                 lbl_Speed.Text = trb_Speed.Value.ToString();
             iSpeed = trb_Speed.Value;
-        }
-
-        private void cb_Controllers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch(cb_Controllers.SelectedItem.ToString())
-            {
-                case "One":
-                    GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
-                    break;
-                case "Two":
-                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Two);
-                    break;
-                case "Three":
-                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Three);
-                    break;
-                case "Four":
-                    GPS = new GamepadState(SlimDX.XInput.UserIndex.Four);
-                    break;
-            }
         }
     }
 }
