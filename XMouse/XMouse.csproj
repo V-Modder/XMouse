@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\x86\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,7 +38,7 @@
     <ApplicationIcon>xbox360.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GlacialList, Version=1.0.4895.11999, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GlacialList, Version=1.0.5124.42808, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\GlacialList.dll</HintPath>
     </Reference>
@@ -102,7 +102,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="setup.aip" />
+    <None Include="setup%28x64%29.aip" />
+    <None Include="setup%28x86%29.aip" />
     <None Include="xbox360.ico" />
   </ItemGroup>
   <ItemGroup>

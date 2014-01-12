@@ -22,7 +22,7 @@ namespace XMouse
     {
         #region Global objects
         //Vars
-        GamepadState GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
+        GamepadState GPS;
         Thread tSticks, tButtons, tCheckApps, tContrllers;
         bool bRunThreads = true;
         bool bCheckAppsRunning = false;
@@ -31,7 +31,7 @@ namespace XMouse
         bool bRightKey = false;
         bool bRightShoulder = false;
         ImageList iList;
-        string sFileName = Application.StartupPath + @"\App-List.gl";
+        string sFileName = Application.StartupPath + @"\App-List.ini";
         int iSpeed;
         // P/Invoke Funktion u.a. zum Steuern der Maus
         [DllImport("user32.dll")]
@@ -48,20 +48,28 @@ namespace XMouse
 
         public Form1()
         {
-            InitializeComponent();
-            this.Icon = Properties.Resources.xbox360;
-            ntf_Icon.Icon = Properties.Resources.xbox360;
-            ntf_Icon.Visible = false;
-            iList = new ImageList();
-            gla_Apps.ImageList = iList;
-            tContrllers = new Thread(CheckControllers);
-            tContrllers.Start();
-            tSticks = new Thread(CheckControllerSticks);
-            tSticks.Start();
-            tButtons = new Thread(CheckControllerButtons);
-            tButtons.Start();
-            tCheckApps = new Thread(CheckAppsRunning);
-            tCheckApps.Start();
+            try
+            {
+                InitializeComponent();
+                GPS = new GamepadState(SlimDX.XInput.UserIndex.One);
+                this.Icon = Properties.Resources.xbox360;
+                ntf_Icon.Icon = Properties.Resources.xbox360;
+                ntf_Icon.Visible = false;
+                iList = new ImageList();
+                gla_Apps.ImageList = iList;
+                tContrllers = new Thread(CheckControllers);
+                tContrllers.Start();
+                tSticks = new Thread(CheckControllerSticks);
+                tSticks.Start();
+                tButtons = new Thread(CheckControllerButtons);
+                tButtons.Start();
+                tCheckApps = new Thread(CheckAppsRunning);
+                tCheckApps.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -380,13 +388,13 @@ namespace XMouse
                         }
                         s = sr.ReadLine();
                     }
+                    this.WindowState = FormWindowState.Minimized;
                 }
                 catch (Exception ee)
                 {
                     MessageBox.Show(ee.Message + Environment.NewLine + ee.Source);
                 }
                 sr.Close();
-                this.WindowState = FormWindowState.Minimized;
             }
         }     
 

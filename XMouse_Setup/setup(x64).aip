@@ -44,6 +44,7 @@
     <ROW Property="ProductLanguage" Value="1031"/>
     <ROW Property="ProductName" Value="XMouse" ValueLocId="*"/>
     <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{587664F0-8D2D-4964-BF18-1B0145BC45BC}"/>
     <ROW Property="WIMinVersion" MultiBuildValue="DefaultBuild:5.0" ValueLocId="-"/>
@@ -56,35 +57,31 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="Deskto~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
-    <ROW Directory="StartupFolder" Directory_Parent="TARGETDIR" DefaultDir="Startu~1|StartupFolder" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AIShRegAnswer" ComponentId="{5CB15ACE-B10D-43F9-8FEE-5530D88A6442}" Directory_="APPDIR" Attributes="4" KeyPath="AIShRegAnswer"/>
     <ROW Component="AI_ExePath" ComponentId="{9FDA42AF-A212-4985-9168-0D25AFFDBC87}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
-    <ROW Component="GlacialList.dll" ComponentId="{F675F596-1D6A-41F4-BCC6-9A9C1C254E67}" Directory_="APPDIR" Attributes="0" KeyPath="GlacialList.dll"/>
+    <ROW Component="GlacialList.dll" ComponentId="{1D95C552-0A14-4ED7-A814-09F9A2543040}" Directory_="APPDIR" Attributes="0" KeyPath="GlacialList.dll"/>
     <ROW Component="Microsoft.NETFrame" ComponentId="{61887C05-AD2C-4304-A6E1-7591E9F25506}" Directory_="APPDIR" Attributes="4" KeyPath="Microsoft.NETFrame" Options="2"/>
     <ROW Component="ProductInformation" ComponentId="{883233F7-BB6B-4205-A8E4-8E7C21393741}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{C78DE528-13FD-4C78-90EC-EEE3D671D935}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="SlimDXRuntime.NET" ComponentId="{68E8BD55-468A-4351-8810-BDFD90C2EB41}" Directory_="APPDIR" Attributes="4" KeyPath="SlimDXRuntime.NET" Options="2"/>
-    <ROW Component="SlimDXRuntime.NET_1" ComponentId="{9985AAF7-58D9-4EA4-8F5A-2409144FC7B8}" Directory_="APPDIR" Attributes="4" KeyPath="SlimDXRuntime.NET_1" Options="2"/>
-    <ROW Component="XMouse.exe" ComponentId="{FF6BE2FD-182F-4A24-88AC-CFCD3DA9EBA8}" Directory_="APPDIR" Attributes="0" KeyPath="XMouse.exe"/>
+    <ROW Component="XMouse.exe" ComponentId="{19493C0C-02F0-441F-90F6-3B76B3CC1D6C}" Directory_="APPDIR" Attributes="256" KeyPath="XMouse.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AIShRegAnswer AI_ExePath GlacialList.dll ProductInformation SHORTCUTDIR XMouse.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AIShRegAnswer AI_ExePath GlacialList.dll ProductInformation XMouse.exe"/>
     <ROW Feature="Microsoft.NETFrame" Title="Microsoft .NET Framework 4" Description="Microsoft .NET Framework 4" Display="7" Level="1" Attributes="16" Components="AI_ExePath Microsoft.NETFrame"/>
     <ROW Feature="SlimDXRuntime.NET" Title="SlimDX Runtime .NET 4.0 x64 (January 2012)" Description="SlimDX Runtime .NET 4.0 x64 (January 2012)" Display="3" Level="1" Attributes="16" Components="AI_ExePath SlimDXRuntime.NET"/>
-    <ROW Feature="SlimDXRuntime.NET_1" Title="SlimDX Runtime .NET 4.0 x86 (January 2012)" Description="SlimDX Runtime .NET 4.0 x86 (January 2012)" Display="5" Level="1" Attributes="16" Components="AI_ExePath SlimDXRuntime.NET_1"/>
+    <ROW Feature="SlimDXRuntime.NET_1" Title="SlimDX Runtime .NET 4.0 x86 (January 2012)" Description="SlimDX Runtime .NET 4.0 x86 (January 2012)" Display="5" Level="1" Attributes="16" Components="AI_ExePath"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="GlacialList.dll" Component_="GlacialList.dll" FileName="Glacia~1.dll|GlacialList.dll" Attributes="0" SourcePath="..\XMouse\GlacialList.dll" SelfReg="false"/>
-    <ROW File="XMouse.exe" Component_="XMouse.exe" FileName="XMouse.exe" Attributes="0" SourcePath="..\XMouse\bin\Debug\XMouse.exe" SelfReg="false" NextFile="GlacialList.dll"/>
+    <ROW File="GlacialList.dll" Component_="GlacialList.dll" FileName="Glacia~1.dll|GlacialList.dll" Attributes="0" SourcePath="..\XMouse\bin\Debug\x64\GlacialList.dll" SelfReg="false" NextFile="XMouse.exe"/>
+    <ROW File="XMouse.exe" Component_="XMouse.exe" FileName="XMouse.exe" Attributes="0" SourcePath="..\XMouse\bin\Debug\x64\XMouse.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files" PackageFileName="XMouse_Setup" Languages="de;en" LangOpt="2" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="..\XMouse\xbox360.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="Setup"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Setup Files\x64" PackageFileName="XMouse_Setup" Languages="de;en" LangOpt="2" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="..\XMouse\xbox360.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="Setup" MsiPackageType="x64"/>
     <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
@@ -193,9 +190,6 @@
     <ROW Dialog_="ShortcutsDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
-    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR"/>
-  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -225,7 +219,7 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]\[ProductName]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
@@ -284,13 +278,7 @@
     <ROW Registry="Microsoft.NETFrame" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="Microsoft.NETFrame" Value="1" Component_="Microsoft.NETFrame"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="SlimDXRuntime.NET" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="SlimDXRuntime.NET" Value="1" Component_="SlimDXRuntime.NET"/>
-    <ROW Registry="SlimDXRuntime.NET_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="SlimDXRuntime.NET_1" Value="1" Component_="SlimDXRuntime.NET_1"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="XMouse" Directory_="StartupFolder" Name="XMouse" Component_="XMouse.exe" Target="[#XMouse.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="XMouse.exe" Directory_="SHORTCUTDIR" Name="XMouse.exe" Component_="XMouse.exe" Target="[#XMouse.exe]" Description="XMouse.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="XMouse.exe_1" Directory_="DesktopFolder" Name="XMouse.exe" Component_="XMouse.exe" Target="[#XMouse.exe]" Description="XMouse.exe" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
@@ -302,12 +290,10 @@
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
     <ROW PrereqKey="Microsoft.NETFrame" DisplayName="Microsoft .NET Framework 4" VersionMin="4.0.30319.1" SetupFileUrl="http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe" Location="1" ExactSize="0" Win9xVersions="Windows 9x/ME" Operator="1" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="mz" Type="1" Feature="Microsoft.NETFrame"/>
     <ROW PrereqKey="SlimDXRuntime.NET" DisplayName="SlimDX Runtime .NET 4.0 x64 (January 2012)" SetupFileUrl="..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bootstrapper\Packages\SlimDXJan2012_VS10_Net40_x64\SlimDX Runtime .NET 4.0 x64 (January 2012).msi" Location="0" ExactSize="0" Win9xVersions="Windows 9x/ME" WinNTVersions="Windows NT/2000/XP/Vista/Windows 7/Windows 8 x86" Operator="1" ComLine="/passive" BasicUiComLine="/passive" NoUiComLine="/passive" Options="mz" TargetName="SlimDX Runtime .NET 4.0 x64 (January 2012).msi" Type="1" Feature="SlimDXRuntime.NET"/>
-    <ROW PrereqKey="SlimDXRuntime.NET_1" DisplayName="SlimDX Runtime .NET 4.0 x86 (January 2012)" SetupFileUrl="..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bootstrapper\Packages\SlimDXJan2012_VS10_Net40_x86\SlimDX Runtime .NET 4.0 x86 (January 2012).msi" Location="0" ExactSize="0" Win9xVersions="Windows 9x/ME" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64" Operator="1" ComLine="/passive" BasicUiComLine="/passive" NoUiComLine="/passive" Options="mz" TargetName="SlimDX Runtime .NET 4.0 x86 (January 2012).msi" Type="1" Feature="SlimDXRuntime.NET_1"/>
-    <ATTRIBUTE name="PrereqsOrder" value="Microsoft.NETFrame SlimDXRuntime.NET SlimDXRuntime.NET_1"/>
+    <ATTRIBUTE name="PrereqsOrder" value="Microsoft.NETFrame SlimDXRuntime.NET"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="NDP" Prereq="Microsoft.NETFrame" SearchType="1" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP" VerMin="4.0.0.0" Order="2" Property="PREREQSEARCH"/>
-    <ROW SearchKey="Value" Prereq="SlimDXRuntime.NET_1" SearchType="9" SearchString="HKCR\Installer\Products\34E0DBE70CA68AC49909005E0096DA92\Value" RefContent="M33554445" Order="2" Property="PREREQSEARCH_1"/>
     <ROW SearchKey="Version" Prereq="SlimDXRuntime.NET" SearchType="9" SearchString="HKCR\Installer\Products\60A9912A4C987814AAA4A36967BF97D9\Version" RefContent="M33554445" Order="2" Property="PREREQSEARCH_1_1"/>
   </COMPONENT>
 </DOCUMENT>

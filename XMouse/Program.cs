@@ -36,6 +36,7 @@ namespace XMouse
             catch (SlimDxNotFoundException e)
             {
                 MessageBox.Show(e.Message);
+                Application.Exit();
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
