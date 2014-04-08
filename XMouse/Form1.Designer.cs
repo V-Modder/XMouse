@@ -28,23 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            GlacialComponents.Controls.GLColumn glColumn1 = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumn2 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.gla_Apps = new GlacialComponents.Controls.GlacialList();
-            this.ntf_Icon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.cms_Icon = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trb_Speed = new System.Windows.Forms.TrackBar();
             this.lbl_Speed_min = new System.Windows.Forms.Label();
             this.lbl_speed_max = new System.Windows.Forms.Label();
             this.lbl_Speed = new System.Windows.Forms.Label();
             this.pib_Status = new System.Windows.Forms.PictureBox();
-            this.cb_Controllers = new AdvancedComboBox();
-            this.cms_Icon.SuspendLayout();
+            this.cb_Controllers = new ComboBoxes.AdvancedComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.trb_Speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_Status)).BeginInit();
             this.SuspendLayout();
@@ -78,25 +72,25 @@
             this.gla_Apps.AutoHeight = true;
             this.gla_Apps.BackColor = System.Drawing.SystemColors.Window;
             this.gla_Apps.BackgroundStretchToFit = true;
-            glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
-            glColumn1.CheckBoxes = false;
-            glColumn1.ImageIndex = -1;
-            glColumn1.Name = "Icon";
-            glColumn1.NumericSort = false;
-            glColumn1.Text = "Icon";
-            glColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn1.Width = 30;
-            glColumn2.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumn2.CheckBoxes = false;
-            glColumn2.ImageIndex = -1;
-            glColumn2.Name = "Pfad";
-            glColumn2.NumericSort = false;
-            glColumn2.Text = "Pfad";
-            glColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn2.Width = 570;
+            glColumn3.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
+            glColumn3.CheckBoxes = false;
+            glColumn3.ImageIndex = -1;
+            glColumn3.Name = "Icon";
+            glColumn3.NumericSort = false;
+            glColumn3.Text = "Icon";
+            glColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn3.Width = 30;
+            glColumn4.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn4.CheckBoxes = false;
+            glColumn4.ImageIndex = -1;
+            glColumn4.Name = "Pfad";
+            glColumn4.NumericSort = false;
+            glColumn4.Text = "Pfad";
+            glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn4.Width = 570;
             this.gla_Apps.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
-            glColumn1,
-            glColumn2});
+            glColumn3,
+            glColumn4});
             this.gla_Apps.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this.gla_Apps.FullRowSelect = true;
             this.gla_Apps.GridColor = System.Drawing.Color.LightGray;
@@ -126,38 +120,6 @@
             this.gla_Apps.SuperFlatHeaderColor = System.Drawing.Color.White;
             this.gla_Apps.TabIndex = 5;
             this.gla_Apps.Text = "glacialList1";
-            // 
-            // ntf_Icon
-            // 
-            this.ntf_Icon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ntf_Icon.BalloonTipText = "Controlls the mouse through pad. Double click to open config.";
-            this.ntf_Icon.BalloonTipTitle = "XMouse";
-            this.ntf_Icon.ContextMenuStrip = this.cms_Icon;
-            this.ntf_Icon.Text = "XMouse";
-            this.ntf_Icon.Visible = true;
-            this.ntf_Icon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ntf_Icon_MouseDoubleClick);
-            // 
-            // cms_Icon
-            // 
-            this.cms_Icon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.öffnenToolStripMenuItem,
-            this.schließenToolStripMenuItem});
-            this.cms_Icon.Name = "cms_Icon";
-            this.cms_Icon.Size = new System.Drawing.Size(126, 48);
-            // 
-            // öffnenToolStripMenuItem
-            // 
-            this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.öffnenToolStripMenuItem.Text = "Öffnen";
-            this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
-            // 
-            // schließenToolStripMenuItem
-            // 
-            this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
-            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.schließenToolStripMenuItem.Text = "Schließen";
-            this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
             // 
             // trb_Speed
             // 
@@ -199,7 +161,7 @@
             // 
             // pib_Status
             // 
-            this.pib_Status.Location = new System.Drawing.Point(702, 281);
+            this.pib_Status.Location = new System.Drawing.Point(703, 281);
             this.pib_Status.Name = "pib_Status";
             this.pib_Status.Size = new System.Drawing.Size(32, 32);
             this.pib_Status.TabIndex = 10;
@@ -234,13 +196,12 @@
             this.Controls.Add(this.btn_add);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "XMouse";
             this.TransparencyKey = System.Drawing.Color.Blue;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
-            this.cms_Icon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trb_Speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_Status)).EndInit();
             this.ResumeLayout(false);
@@ -253,16 +214,12 @@
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_delete;
         private GlacialComponents.Controls.GlacialList gla_Apps;
-        private System.Windows.Forms.NotifyIcon ntf_Icon;
-        private System.Windows.Forms.ContextMenuStrip cms_Icon;
-        private System.Windows.Forms.ToolStripMenuItem öffnenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
         private System.Windows.Forms.TrackBar trb_Speed;
         private System.Windows.Forms.Label lbl_Speed_min;
         private System.Windows.Forms.Label lbl_speed_max;
         private System.Windows.Forms.Label lbl_Speed;
         private System.Windows.Forms.PictureBox pib_Status;
-        private AdvancedComboBox cb_Controllers;
+        private ComboBoxes.AdvancedComboBox cb_Controllers;
 
     }
 }

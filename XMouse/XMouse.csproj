@@ -16,11 +16,11 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\x86\</OutputPath>
+    <OutputPath>bin\Debug\x64\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -60,9 +60,6 @@
     </Compile>
     <Compile Include="Add_App.Designer.cs">
       <DependentUpon>Add_App.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdvancedComboBox.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -111,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="yellow.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComboBoxes\ComboBoxes.csproj">
+      <Project>{40E015E6-220C-48EF-9B6A-F8E054A89381}</Project>
+      <Name>ComboBoxes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
