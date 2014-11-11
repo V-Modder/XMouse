@@ -58,9 +58,7 @@ namespace Whatever
             State state = Controller.GetState();
             if (lastPacket == state.PacketNumber) return;
             lastPacket = state.PacketNumber;
-
             var gamepadState = state.Gamepad;
-
             // Shoulders
             LeftShoulder = (gamepadState.Buttons & GamepadButtonFlags.LeftShoulder) != 0;
             RightShoulder = (gamepadState.Buttons & GamepadButtonFlags.RightShoulder) != 0;

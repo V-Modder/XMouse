@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
+            this.components = new System.ComponentModel.Container();
+            GlacialComponents.Controls.GLColumn glColumn1 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn2 = new GlacialComponents.Controls.GLColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.gla_Apps = new GlacialComponents.Controls.GlacialList();
@@ -39,15 +41,26 @@
             this.lbl_Speed = new System.Windows.Forms.Label();
             this.pib_Status = new System.Windows.Forms.PictureBox();
             this.cb_Controllers = new ComboBoxes.AdvancedComboBox();
+            this.ntf_Icon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cms_Icon = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trb_Speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_Status)).BeginInit();
+            this.cms_Icon.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(659, 12);
+            this.btn_add.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_add.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_add.FlatAppearance.BorderSize = 0;
+            this.btn_add.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add.ForeColor = System.Drawing.Color.Black;
+            this.btn_add.Location = new System.Drawing.Point(628, 12);
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(75, 23);
+            this.btn_add.Size = new System.Drawing.Size(106, 31);
             this.btn_add.TabIndex = 0;
             this.btn_add.Text = "Hinzufügen";
             this.btn_add.UseVisualStyleBackColor = true;
@@ -55,7 +68,7 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(659, 42);
+            this.btn_delete.Location = new System.Drawing.Point(642, 58);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(75, 23);
             this.btn_delete.TabIndex = 2;
@@ -70,27 +83,27 @@
             this.gla_Apps.AlternateBackground = System.Drawing.Color.DarkGreen;
             this.gla_Apps.AlternatingColors = false;
             this.gla_Apps.AutoHeight = true;
-            this.gla_Apps.BackColor = System.Drawing.SystemColors.Window;
+            this.gla_Apps.BackColor = System.Drawing.SystemColors.Control;
             this.gla_Apps.BackgroundStretchToFit = true;
-            glColumn3.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
-            glColumn3.CheckBoxes = false;
-            glColumn3.ImageIndex = -1;
-            glColumn3.Name = "Icon";
-            glColumn3.NumericSort = false;
-            glColumn3.Text = "Icon";
-            glColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn3.Width = 30;
-            glColumn4.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumn4.CheckBoxes = false;
-            glColumn4.ImageIndex = -1;
-            glColumn4.Name = "Pfad";
-            glColumn4.NumericSort = false;
-            glColumn4.Text = "Pfad";
-            glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn4.Width = 570;
+            glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.UserType;
+            glColumn1.CheckBoxes = false;
+            glColumn1.ImageIndex = -1;
+            glColumn1.Name = "Icon";
+            glColumn1.NumericSort = false;
+            glColumn1.Text = "Icon";
+            glColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn1.Width = 30;
+            glColumn2.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn2.CheckBoxes = false;
+            glColumn2.ImageIndex = -1;
+            glColumn2.Name = "Pfad";
+            glColumn2.NumericSort = false;
+            glColumn2.Text = "Pfad";
+            glColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn2.Width = 570;
             this.gla_Apps.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
-            glColumn3,
-            glColumn4});
+            glColumn1,
+            glColumn2});
             this.gla_Apps.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this.gla_Apps.FullRowSelect = true;
             this.gla_Apps.GridColor = System.Drawing.Color.LightGray;
@@ -123,12 +136,14 @@
             // 
             // trb_Speed
             // 
+            this.trb_Speed.BackColor = System.Drawing.SystemColors.Control;
             this.trb_Speed.Location = new System.Drawing.Point(625, 103);
-            this.trb_Speed.Maximum = 20;
+            this.trb_Speed.Maximum = 50;
             this.trb_Speed.Minimum = 1;
             this.trb_Speed.Name = "trb_Speed";
             this.trb_Speed.Size = new System.Drawing.Size(109, 45);
             this.trb_Speed.TabIndex = 6;
+            this.trb_Speed.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trb_Speed.Value = 1;
             this.trb_Speed.Scroll += new System.EventHandler(this.trb_Speed_Scroll);
             // 
@@ -148,12 +163,12 @@
             this.lbl_speed_max.Name = "lbl_speed_max";
             this.lbl_speed_max.Size = new System.Drawing.Size(19, 13);
             this.lbl_speed_max.TabIndex = 8;
-            this.lbl_speed_max.Text = "20";
+            this.lbl_speed_max.Text = "00";
             // 
             // lbl_Speed
             // 
             this.lbl_Speed.AutoSize = true;
-            this.lbl_Speed.Location = new System.Drawing.Point(672, 135);
+            this.lbl_Speed.Location = new System.Drawing.Point(670, 135);
             this.lbl_Speed.Name = "lbl_Speed";
             this.lbl_Speed.Size = new System.Drawing.Size(19, 13);
             this.lbl_Speed.TabIndex = 9;
@@ -164,6 +179,7 @@
             this.pib_Status.Location = new System.Drawing.Point(703, 281);
             this.pib_Status.Name = "pib_Status";
             this.pib_Status.Size = new System.Drawing.Size(32, 32);
+            this.pib_Status.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pib_Status.TabIndex = 10;
             this.pib_Status.TabStop = false;
             // 
@@ -178,6 +194,38 @@
             this.cb_Controllers.Sorted = true;
             this.cb_Controllers.TabIndex = 11;
             this.cb_Controllers.SelectedIndexChanged += new System.EventHandler(this.cb_Controllers_SelectedIndexChanged);
+            // 
+            // ntf_Icon
+            // 
+            this.ntf_Icon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ntf_Icon.BalloonTipText = "Controlls the mouse through pad. Double click to open config.";
+            this.ntf_Icon.BalloonTipTitle = "XMouse";
+            this.ntf_Icon.ContextMenuStrip = this.cms_Icon;
+            this.ntf_Icon.Text = "XMouse";
+            this.ntf_Icon.Visible = true;
+            this.ntf_Icon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ntf_Icon_MouseDoubleClick);
+            // 
+            // cms_Icon
+            // 
+            this.cms_Icon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.öffnenToolStripMenuItem,
+            this.schließenToolStripMenuItem});
+            this.cms_Icon.Name = "cms_Icon";
+            this.cms_Icon.Size = new System.Drawing.Size(126, 48);
+            // 
+            // öffnenToolStripMenuItem
+            // 
+            this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.öffnenToolStripMenuItem.Text = "Öffnen";
+            this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
+            // 
+            // schließenToolStripMenuItem
+            // 
+            this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
+            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.schließenToolStripMenuItem.Text = "Schließen";
+            this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -195,15 +243,19 @@
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_add);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(350, 150, 350, 150);
+            this.ShowInTaskbar = false;
             this.Text = "XMouse";
-            this.TransparencyKey = System.Drawing.Color.Blue;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.trb_Speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pib_Status)).EndInit();
+            this.cms_Icon.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +272,10 @@
         private System.Windows.Forms.Label lbl_Speed;
         private System.Windows.Forms.PictureBox pib_Status;
         private ComboBoxes.AdvancedComboBox cb_Controllers;
+        private System.Windows.Forms.NotifyIcon ntf_Icon;
+        private System.Windows.Forms.ContextMenuStrip cms_Icon;
+        private System.Windows.Forms.ToolStripMenuItem öffnenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
 
     }
 }
